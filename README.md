@@ -108,7 +108,7 @@ We will create two S3 buckets, the first will be where our simulated streaming t
 2. Click on **Create a function** and select **Author from scratch**.
 3. Give the function a name like tweets_analyzer, select the **Python 3.6** runtime, select the **Create new role from template(s)** option, and give the role a name such as lab-tweets-analyzer-lambda-role.
 
-![AuthorLambda](./images/Picture5.png)
+![AuthorLambda](./images/Picture5.PNG)
 
 1. Click on **Create function**. This action creates the Lambda function and its associated role with some permissions., but these permissions are not enough to run the solution, as it needs to read from a Kinesis data stream, use Amazon Comprehend, and write on S3. You will deal with that after the function is created and configured.
 2. Now you need to populate the function code. Scroll up to the designer and click on the Lambda function button with the name you gave it to open the function code editor. Scroll down and substitute the code in the editor with the following code, changing the bucket name to your ouput bucket name.
@@ -232,7 +232,7 @@ In this section, you are going to add managed policies to the role that the Lamb
 4. Search for and select AmazonSageMakerReadOnly, ComprehendReadOnly, and AmazonS3FullAccess. Please, note that these are AWS managed policies, hence not controlling access to specific resources within a service. You can grant access to certain API actions or to specific resources within the services (such as specific S3 buckets or Kinesis streams) by using custom policies or resourced-based policies if supported (e.g.: S3 bucket policies).
 5. Click on **Attach policy**. This will show the policies attached.
 
-![RoleConfig](./images/Picture6.png)
+![RoleConfig](./images/Picture6.PNG)
 
 # Add a trigger to the Lambda function
 
@@ -240,16 +240,16 @@ The Lambda function requires a trigger to be executed, in this lab it is a S3 Ev
 
 1. Go back to the AWS Lambda console and click on the function you created earlier. In the **Designer** block of the current screen, click on the S3 button on the left side. S3 will appear as a trigger for the function as in the following figure.
 
-![LambdaConfig](./images/Picture7.png)
+![LambdaConfig](./images/Picture7.PNG)
 
 2. Scroll down and configure the **Bucket** to match you input bucket name (ex. lab-tweets-input-yourname). 
 3. Select the Event Type to be PUT. Click on the **Add** button.
 
-![LambdaTrigger](./images/Picture8.png)
+![LambdaTrigger](./images/Picture8.PNG)
 
 3. Click on the configured trigger and switch it to **Enabled** , then click **Save**.
 
-![EnabledTrigger](./images/Picture9.png)
+![EnabledTrigger](./images/Picture9.PNG)
 
 4. Now that the trigger is enabled, your Lambda function will start processing S3 Event records; you can monitor the function invocations in CloudWatch or in the **Monitoring** tab within the function. You can also check your S3 bucket and see that there are new objects.
 
